@@ -12,6 +12,7 @@ var randomNumber = createRandom();
 
 console.log(randomNumber);
 
+//This makes the button work on click//
 clearButton.addEventListener("click", clearsInput);
 guessButton.addEventListener("click", usersGuess);
 resetButton.addEventListener('click', resetGame);
@@ -30,12 +31,15 @@ function usersGuess() {
   numberResult.innerText = numberInput.value;
   feedBack();
 };
+
+
 //This function resets the game, clears the input using the input function, and then creates a random number.
 function resetGame(){
   clearsInput();
   randomNumber = createRandom();
   numberResult.innerText = '?';
   outcome.innerText = 'Make a guess';
+  enabledButtons();
   console.log(randomNumber);
 };
 
@@ -46,12 +50,16 @@ function feedBack() {
     outcome.innerText = `That is too high`;
   } else if (convertNum < randomNumber) {
     outcome.innerText = `That is too low`;
-  } else {
+  } else if (convertNum === randomNumber) {
     outcome.innerText = `Boom`;
-    }
+  } else {
+    outcome.innerText = 'Not a guess';
+  }
 }
 
 numberInput.addEventListener('keyup', enabledButtons);
+
+
 
 function enabledButtons(){
   if (numberInput.value === ""){
