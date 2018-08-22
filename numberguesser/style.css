@@ -58,21 +58,21 @@ body {
 }
 
 .number-result {
-  color: #EB008B;
+  color: #ED458B;
   font-size: 130px;
   margin: 10px;
 }
 
 .guess-button:hover{
-  background-color: #EB008B
+  background-color: #ED458B
 }
 
 .clear-button:hover{
-  background-color: #EB008B
+  background-color: #ED458B
 }
 
 .reset-button:hover{
-  background-color: #EB008B
+  background-color: #ED458B
 }
 
 .guess-button:disabled{
