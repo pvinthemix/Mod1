@@ -11,7 +11,7 @@ var resetButton = document.querySelector('.reset-button');
 var randomNumber = createRandom();
 
 console.log(randomNumber);
-
+console.log(clearButton);
 //This makes the button work on click//
 clearButton.addEventListener("click", clearsInput);
 guessButton.addEventListener("click", usersGuess);
@@ -30,6 +30,8 @@ function createRandom(){
 function usersGuess() {
   numberResult.innerText = numberInput.value;
   feedBack();
+  numberInput.value = "";
+  enabledButtons();
 };
 
 
@@ -45,16 +47,14 @@ function resetGame(){
 
 /*This function runs once the userGuess function has run and spits out feedback on their guess*/
 function feedBack() {
-  var convertNum = parseInt(numberInput.value);
-  if (convertNum > randomNumber) {
+  var userGuess = parseInt(numberInput.value);
+  if (userGuess > randomNumber) {
     outcome.innerText = `That is too high`;
-  } else if (convertNum < randomNumber) {
+  } else if (userGuess < randomNumber) {
     outcome.innerText = `That is too low`;
-  } else if (convertNum === randomNumber) {
+  } else if (userGuess === randomNumber) {
     outcome.innerText = `Boom`;
-  } else {
-    outcome.innerText = 'Not a guess';
-  }
+  } 
 }
 
 numberInput.addEventListener('keyup', enabledButtons);
@@ -66,7 +66,11 @@ function enabledButtons(){
     guessButton.disabled = true;
     resetButton.disabled = true;
     clearButton.disabled = true;
-  } else if (numberInput.value !== ""){
+  } else if (numberInput.value > 100 || numberInput.value < 0){
+    guessButton.disabled = true;
+    resetButton.disabled = true;
+    clearButton.disabled = false;
+  } else {
     guessButton.disabled = false;
     resetButton.disabled = false;
     clearButton.disabled = false;
